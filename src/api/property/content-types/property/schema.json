@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "properties",
+  "info": {
+    "singularName": "property",
+    "pluralName": "properties",
+    "displayName": "Property",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Street": {
+      "type": "string"
+    },
+    "Rooms": {
+      "type": "integer"
+    },
+
+    "Short_Address": {
+      "type": "string"
+    },
+    "Preview_Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos", "audios"]
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "Rent": {
+      "type": "decimal"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Neighborhood": {
+      "type": "string"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::location.location",
+      "inversedBy": "houses"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "houses"
+    },
+    "images": {
+      "allowedTypes": ["images", "files", "videos", "audios"],
+      "type": "media",
+      "multiple": true
+    },
+    "pricePerSqFt": {
+      "type": "float",
+      "required": true
+    },
+    "reraNumber": {
+      "type": "integer",
+      "required": true
+    },
+    "referenceNumber": {
+      "type": "string",
+      "required": true
+    },
+    "agentBRN": {
+      "type": "integer",
+      "required": true
+    },
+    "agent": {
+      "type": "string",
+      "required": true
+    },
+    "bedrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "bathrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "area": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
