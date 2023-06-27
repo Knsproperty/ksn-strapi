@@ -1,0 +1,109 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rent_properties",
+  "info": {
+    "singularName": "rent-property",
+    "pluralName": "rent-properties",
+    "displayName": "Rent_Property",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Street": {
+      "type": "string"
+    },
+    "Rooms": {
+      "type": "integer"
+    },
+    "Short_Address": {
+      "type": "text"
+    },
+    "Preview_Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "Rent": {
+      "type": "decimal"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Neighborhood": {
+      "type": "string"
+    },
+    "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "PricePerSqFt": {
+      "type": "float",
+      "required": true
+    },
+    "ReraNumber": {
+      "type": "integer",
+      "required": true
+    },
+    "ReferenceNumber": {
+      "type": "string",
+      "required": true
+    },
+    "Agent": {
+      "type": "string",
+      "required": true
+    },
+    "Bedrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "Bathrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "Area": {
+      "type": "integer",
+      "required": true
+    },
+    "Property_Type": {
+      "type": "enumeration",
+      "enum": [
+        "Apartment",
+        "Villa",
+        "Department",
+        "Townhouse",
+        "Penthouse",
+        "Duplex",
+        "Plot",
+        "Land"
+      ]
+    },
+    "Location": {
+      "type": "string"
+    },
+    "agents": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::agent.agent",
+      "mappedBy": "rent_properties"
+    }
+  }
+}

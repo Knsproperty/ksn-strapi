@@ -15,7 +15,8 @@
     "@strapi/plugin-users-permissions": "4.11.2",
     "@strapi/strapi": "4.11.2",
     "ai-text-generation": "^0.2.0",
-    "better-sqlite3": "8.0.1"
+    "better-sqlite3": "8.0.1",
+    "pg": "^8.11.1"
   },
   "author": {
     "name": "A Strapi developer"

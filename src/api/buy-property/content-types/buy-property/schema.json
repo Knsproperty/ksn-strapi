@@ -1,0 +1,103 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buy_properties",
+  "info": {
+    "singularName": "buy-property",
+    "pluralName": "buy-properties",
+    "displayName": "Buy_Property",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Street": {
+      "type": "string"
+    },
+    "Rooms": {
+      "type": "integer"
+    },
+    "Short_Address": {
+      "type": "text"
+    },
+    "Preview_Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "PricePerSqFt": {
+      "type": "float",
+      "required": true
+    },
+    "ReraNumber": {
+      "type": "integer",
+      "required": true
+    },
+    "ReferenceNumber": {
+      "type": "string",
+      "required": true
+    },
+    "AgentBRN": {
+      "type": "integer",
+      "required": true
+    },
+    "Bedrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "Bathrooms": {
+      "type": "integer",
+      "required": true
+    },
+    "Area": {
+      "type": "integer",
+      "required": true
+    },
+    "Property_Type": {
+      "type": "enumeration",
+      "enum": [
+        "Apartment",
+        "Villa",
+        "Department",
+        "Townhouse",
+        "Penthouse",
+        "Duplex",
+        "Plot",
+        "Land"
+      ]
+    },
+    "Location": {
+      "type": "string"
+    },
+    "agent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::agent.agent",
+      "inversedBy": "buy_property"
+    }
+  }
+}

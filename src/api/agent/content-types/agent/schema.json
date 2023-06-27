@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "agents",
+  "info": {
+    "singularName": "agent",
+    "pluralName": "agents",
+    "displayName": "Agent",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Number": {
+      "type": "biginteger"
+    },
+    "Rera": {
+      "type": "biginteger"
+    },
+    "Profile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "rent_properties": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::rent-property.rent-property",
+      "inversedBy": "agents"
+    },
+    "buy_property": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::buy-property.buy-property",
+      "mappedBy": "agent"
+    },
+    "BRN": {
+      "type": "biginteger"
+    }
+  }
+}
