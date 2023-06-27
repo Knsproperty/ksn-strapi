@@ -25,35 +25,19 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "Price": {
-      "type": "decimal"
-    },
-    "Rent": {
       "type": "decimal"
     },
     "Description": {
       "type": "richtext"
     },
-    "Neighborhood": {
-      "type": "string"
-    },
     "Images": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "PricePerSqFt": {
       "type": "float",
@@ -67,8 +51,8 @@
       "type": "string",
       "required": true
     },
-    "Agent": {
-      "type": "string",
+    "AgentBRN": {
+      "type": "integer",
       "required": true
     },
     "Bedrooms": {
