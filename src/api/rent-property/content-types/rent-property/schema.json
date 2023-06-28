@@ -4,7 +4,7 @@
   "info": {
     "singularName": "rent-property",
     "pluralName": "rent-properties",
-    "displayName": "Rent_Property",
+    "displayName": "Rent",
     "description": ""
   },
   "options": {
@@ -88,6 +88,13 @@
       "relation": "manyToMany",
       "target": "api::agent.agent",
       "mappedBy": "rent_properties"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
     }
   }
 }

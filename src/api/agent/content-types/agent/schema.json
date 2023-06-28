@@ -52,6 +52,12 @@
     },
     "BRN": {
       "type": "biginteger"
+    },
+    "off_plan": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::off-plan.off-plan",
+      "inversedBy": "agent"
     }
   }
 }

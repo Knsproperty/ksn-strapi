@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "buy_properties",
+  "collectionName": "off_plans",
   "info": {
-    "singularName": "buy-property",
-    "pluralName": "buy-properties",
-    "displayName": "Buy",
-    "description": ""
+    "singularName": "off-plan",
+    "pluralName": "off-plans",
+    "displayName": "OffPlan"
   },
   "options": {
     "draftAndPublish": true
@@ -93,18 +92,18 @@
     "Location": {
       "type": "string"
     },
-    "agent": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::agent.agent",
-      "inversedBy": "buy_property"
-    },
     "Name": {
       "type": "string"
     },
     "slug": {
       "type": "uid",
       "targetField": "Name"
+    },
+    "agent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::agent.agent",
+      "mappedBy": "off_plan"
     }
   }
 }
