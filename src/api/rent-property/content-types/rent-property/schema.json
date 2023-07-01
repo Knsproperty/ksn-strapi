@@ -95,6 +95,10 @@
     "slug": {
       "type": "uid",
       "targetField": "Name"
+    },
+    "Exclusive": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

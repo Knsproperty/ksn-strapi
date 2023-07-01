@@ -24,12 +24,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "Price": {
       "type": "decimal"
@@ -41,12 +36,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "PricePerSqFt": {
       "type": "float",
@@ -104,6 +94,11 @@
       "relation": "oneToOne",
       "target": "api::agent.agent",
       "mappedBy": "off_plan"
+    },
+
+    "Exclusive": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
