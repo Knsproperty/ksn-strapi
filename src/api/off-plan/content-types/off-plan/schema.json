@@ -4,7 +4,8 @@
   "info": {
     "singularName": "off-plan",
     "pluralName": "off-plans",
-    "displayName": "OffPlan"
+    "displayName": "OffPlan",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,7 +25,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "Price": {
       "type": "decimal"
@@ -36,27 +42,32 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "PricePerSqFt": {
       "type": "float",
-      "required": true
+      "required": false
     },
     "ReraNumber": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "ReferenceNumber": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "AgentBRN": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Bedrooms": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Bathrooms": {
       "type": "integer",
@@ -64,7 +75,7 @@
     },
     "Area": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Property_Type": {
       "type": "enumeration",
@@ -95,7 +106,6 @@
       "target": "api::agent.agent",
       "mappedBy": "off_plan"
     },
-
     "Exclusive": {
       "type": "boolean",
       "default": false

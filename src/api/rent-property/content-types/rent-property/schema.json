@@ -25,7 +25,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "Price": {
       "type": "decimal"
@@ -37,35 +42,40 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "PricePerSqFt": {
       "type": "float",
-      "required": true
+      "required": false
     },
     "ReraNumber": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "ReferenceNumber": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "AgentBRN": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Bedrooms": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Bathrooms": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Area": {
       "type": "integer",
-      "required": true
+      "required": false
     },
     "Property_Type": {
       "type": "enumeration",
