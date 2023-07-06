@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "FirstName": {
-      "type": "string"
-    },
-    "LastName": {
-      "type": "string"
-    },
     "Position": {
       "type": "string"
     },
@@ -34,6 +28,13 @@
         "videos",
         "audios"
       ]
+    },
+    "Name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
     }
   }
 }
