@@ -80,14 +80,10 @@
     "Property_Type": {
       "type": "enumeration",
       "enum": [
-        "Apartment",
-        "Villa",
-        "Department",
-        "Townhouse",
-        "Penthouse",
-        "Duplex",
-        "Plot",
-        "Land"
+        "VH",
+        "TH",
+        "FA",
+        "OF"
       ]
     },
     "Location": {
