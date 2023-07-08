@@ -109,6 +109,25 @@
     "Exclusive": {
       "type": "boolean",
       "default": false
+    },
+    "Community": {
+      "type": "string"
+    },
+    "Sub_Community": {
+      "type": "string"
+    },
+    "Parking": {
+      "type": "integer"
+    },
+    "Furnished": {
+      "type": "enumeration",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "Geopoints": {
+      "type": "string"
     }
   }
 }
