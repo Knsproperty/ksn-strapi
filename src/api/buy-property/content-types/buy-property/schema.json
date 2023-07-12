@@ -83,7 +83,8 @@
         "VH",
         "TH",
         "FA",
-        "OF"
+        "OF",
+        "AP"
       ]
     },
     "Location": {
@@ -124,6 +125,9 @@
     },
     "Geopoints": {
       "type": "string"
+    },
+    "Cron_Images": {
+      "type": "json"
     }
   }
 }

@@ -18,9 +18,11 @@
     "@strapi/provider-upload-cloudinary": "^4.11.4",
     "@strapi/strapi": "4.11.2",
     "ai-text-generation": "^0.2.0",
+    "axios": "^1.4.0",
     "better-sqlite3": "8.0.1",
     "mysql": "^2.18.1",
-    "pg": "^8.11.1"
+    "pg": "^8.11.1",
+    "xml2js": "^0.6.0"
   },
   "author": {
     "name": "A Strapi developer"

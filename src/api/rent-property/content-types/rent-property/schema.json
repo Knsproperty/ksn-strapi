@@ -25,12 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "Price": {
       "type": "decimal"
@@ -42,12 +37,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "PricePerSqFt": {
       "type": "float",
@@ -71,7 +61,7 @@
     },
     "Bathrooms": {
       "type": "integer",
-      "required": false
+      "required": true
     },
     "Area": {
       "type": "integer",
@@ -79,16 +69,7 @@
     },
     "Property_Type": {
       "type": "enumeration",
-      "enum": [
-        "Apartment",
-        "Villa",
-        "Department",
-        "Townhouse",
-        "Penthouse",
-        "Duplex",
-        "Plot",
-        "Land"
-      ]
+      "enum": ["VH", "TH", "FA", "OF", "AP"]
     },
     "Location": {
       "type": "string"
@@ -109,6 +90,25 @@
     "Exclusive": {
       "type": "boolean",
       "default": false
+    },
+    "Community": {
+      "type": "string"
+    },
+    "Sub_Community": {
+      "type": "string"
+    },
+    "Parking": {
+      "type": "integer"
+    },
+    "Furnished": {
+      "type": "enumeration",
+      "enum": ["Yes", "No"]
+    },
+    "Geopoints": {
+      "type": "string"
+    },
+    "Cron_Images": {
+      "type": "json"
     }
   }
 }
