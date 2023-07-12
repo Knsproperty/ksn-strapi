@@ -7,23 +7,19 @@ const get = (data, type) => {
   const res = data.filter((it) => it.Offering_Type === type);
   return res;
 };
-module.exports = {
-  /**
-   * Cron job with timezone example.
-   * Every Monday at 1am for Asia/Dhaka timezone.
-   * List of valid timezones: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
-   */
 
+module.exports = {
   myJob: {
     task: async ({ strapi }) => {
-      console.log("task is running....");
-      const response = await axios.get(
-        "https://expert.propertyfinder.ae/feed/kns/privatesite/ef5baf9b94ef69775d282c15b19d22ab",
-        {}
-      );
+      console.log("Task is running....");
 
+      // Fetch XML data from the source
+      const response = await axios.get(
+        "https://expert.propertyfinder.ae/feed/kns/privatesite/ef5baf9b94ef69775d282c15b19d22ab"
+      );
       const xmlData = response.data;
 
+      // Parse XML data to JSON
       const parsedData = await new Promise((resolve, reject) => {
         parseString(xmlData, (err, results) => {
           if (err) {
@@ -35,7 +31,9 @@ module.exports = {
           }
         });
       });
+
       const parsedXml = await JSON.parse(parsedData).list.property;
+
       const convertArray = async (inputArray) => {
         const newData = [];
 
@@ -89,16 +87,83 @@ module.exports = {
       };
 
       const convertedArray = await convertArray(parsedXml);
-      console.log(convertedArray);
+      console.log("Converted Array:", convertedArray);
 
-      // Filters the convertedArray on the behalf of offering types in array object property name is Offering_Type so categories bye ["RR","RS","CS"]
+      // Fetch existing data from the database
+      const existingData = {
+        RS: await strapi.db
+          .query("api::buy-property.buy-property")
+          .findMany({ Offering_Type: "RS" }),
+        RR: await strapi.db
+          .query("api::rent-property.rent-property")
+          .findMany({ Offering_Type: "RR" }),
+      };
 
-      await strapi.db.query("api::buy-property.buy-property").createMany({
-        data: get(convertedArray, "RS"),
+      // Compare existing data with new data
+      const newData = {
+        RS: [],
+        RR: [],
+      };
+
+      convertedArray.forEach((item) => {
+        if (item.Offering_Type === "RS") {
+          const existingItem = existingData.RS.find(
+            (existing) => existing.ReferenceNumber === item.ReferenceNumber
+          );
+          if (!existingItem) {
+            newData.RS.push(item);
+          }
+        } else if (item.Offering_Type === "RR") {
+          const existingItem = existingData.RR.find(
+            (existing) => existing.ReferenceNumber === item.ReferenceNumber
+          );
+          if (!existingItem) {
+            newData.RR.push(item);
+          }
+        }
       });
-      await strapi.db.query("api::rent-property.rent-property").createMany({
-        data: get(convertedArray, "RR"),
+
+      // Remove deleted data from the database
+      existingData.RS.forEach(async (existing) => {
+        const found = convertedArray.find(
+          (item) => item.ReferenceNumber === existing.ReferenceNumber
+        );
+        if (!found) {
+          await strapi.db.query("api::buy-property.buy-property").deleteMany({
+            where: {
+              id: existing.id,
+            },
+          });
+        }
       });
+
+      existingData.RR.forEach(async (existing) => {
+        const found = convertedArray.find(
+          (item) => item.ReferenceNumber === existing.ReferenceNumber
+        );
+        if (!found) {
+          await strapi.db.query("api::rent-property.rent-property").delete({
+            where: {
+              id: existing.id,
+            },
+          });
+        }
+      });
+
+      // Add new data to the database
+      if (newData.RS.length > 0) {
+        await strapi.db
+          .query("api::buy-property.buy-property")
+          .createMany({ data: newData.RS });
+        console.log("New RS data added:", newData.RS);
+      }
+
+      if (newData.RR.length > 0) {
+        await strapi.db
+          .query("api::rent-property.rent-property")
+          .createMany({ data: newData.RR });
+        console.log("New RR data added:", newData.RR);
+      }
     },
     options: {
       rule: "10 * * * * *",
