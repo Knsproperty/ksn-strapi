@@ -1,7 +1,10 @@
 const { default: axios } = require("axios");
 const { parseString } = require("xml2js");
 const slugify = (text) => {
-  return text.toLowerCase().replace(/ /g, "-");
+  return text
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 };
 const get = (data, type) => {
   const res = data.filter((it) => it.Offering_Type === type);
