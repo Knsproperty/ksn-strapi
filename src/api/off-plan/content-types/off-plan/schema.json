@@ -25,12 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "Price": {
       "type": "decimal"
@@ -42,12 +37,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "PricePerSqFt": {
       "type": "float",
@@ -79,19 +69,16 @@
     },
     "Property_Type": {
       "type": "enumeration",
-      "enum": [
-        "Apartment",
-        "Villa",
-        "Department",
-        "Townhouse",
-        "Penthouse",
-        "Duplex",
-        "Plot",
-        "Land"
-      ]
+      "enum": ["VH", "TH", "FA", "OF", "AP"]
     },
     "Location": {
       "type": "string"
+    },
+    "agent": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::agent.agent",
+      "mappedBy": "off_plan"
     },
     "Name": {
       "type": "string"
@@ -100,15 +87,31 @@
       "type": "uid",
       "targetField": "Name"
     },
-    "agent": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::agent.agent",
-      "mappedBy": "off_plan"
-    },
     "Exclusive": {
       "type": "boolean",
       "default": false
+    },
+    "Community": {
+      "type": "string"
+    },
+    "Sub_Community": {
+      "type": "string"
+    },
+    "Parking": {
+      "type": "integer"
+    },
+    "Furnished": {
+      "type": "enumeration",
+      "enum": ["Yes", "No"]
+    },
+    "Geopoints": {
+      "type": "string"
+    },
+    "Cron_Images": {
+      "type": "json"
+    },
+    "Offering_Type": {
+      "type": "string"
     }
   }
 }
