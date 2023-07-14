@@ -23,6 +23,7 @@
     "mysql": "^2.18.1",
     "pg": "^8.11.1",
     "strapi-plugin-fuzzy-search": "^2.0.3",
+    "strapi-plugin-rest-cache": "^4.2.7",
     "xml2js": "^0.6.0"
   },
   "author": {
