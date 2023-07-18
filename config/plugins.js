@@ -24,10 +24,6 @@ module.exports = {
                 name: "Sub_Community",
                 weight: 100,
               },
-              {
-                name: "Description",
-                weight: -100,
-              },
             ],
           },
         },
@@ -50,8 +46,8 @@ module.exports = {
                 weight: 100,
               },
               {
-                name: "Description",
-                weight: -100,
+                name: "Location",
+                weight: 100,
               },
             ],
           },
