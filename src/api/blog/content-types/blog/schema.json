@@ -44,12 +44,8 @@
       "repeatable": false,
       "component": "shared.seo"
     },
-    "cotent": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbarBaloon"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
+    "content": {
+      "type": "richtext"
     }
   }
 }
