@@ -46,6 +46,9 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "category": {
+      "type": "string"
     }
   }
 }
