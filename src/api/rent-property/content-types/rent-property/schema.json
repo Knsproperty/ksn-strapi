@@ -25,12 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "Price": {
       "type": "decimal"
@@ -42,12 +37,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "PricePerSqFt": {
       "type": "float",
@@ -79,13 +69,7 @@
     },
     "Property_Type": {
       "type": "enumeration",
-      "enum": [
-        "VH",
-        "TH",
-        "FA",
-        "OF",
-        "AP"
-      ]
+      "enum": ["VH", "TH", "FA", "OF", "AP"]
     },
     "Location": {
       "type": "string"
@@ -118,10 +102,7 @@
     },
     "Furnished": {
       "type": "enumeration",
-      "enum": [
-        "Yes",
-        "No"
-      ]
+      "enum": ["Yes", "No"]
     },
     "Geopoints": {
       "type": "string"
@@ -130,6 +111,9 @@
       "type": "json"
     },
     "Offering_Type": {
+      "type": "string"
+    },
+    "Completed": {
       "type": "string"
     }
   }

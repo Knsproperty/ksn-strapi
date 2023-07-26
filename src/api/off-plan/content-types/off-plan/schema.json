@@ -112,6 +112,9 @@
     },
     "Offering_Type": {
       "type": "string"
+    },
+    "Completed": {
+      "type": "string"
     }
   }
 }
