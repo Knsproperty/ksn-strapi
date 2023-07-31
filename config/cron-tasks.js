@@ -6,10 +6,6 @@ const slugify = (text) => {
     .replace(/[^a-zA-Z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 };
-const get = (data, type) => {
-  const res = data.filter((it) => it.Offering_Type === type);
-  return res;
-};
 
 module.exports = {
   myJob: {
@@ -44,7 +40,7 @@ module.exports = {
           const convertedItem = {
             Offering_Type: item.offering_type ? item.offering_type[0] : null,
             Street: item.title_en ? item.reference_number[0] : null,
-            Rooms: item.bedroom ? parseInt(item.bedroom[0]) : 2,
+            Rooms: item.bedroom ? parseInt(item.bedroom[0]) : 0,
             Short_Address: item.title_en ? item.title_en[0] : null,
             Price: item.price ? parseInt(item.price[0]) : null,
             Description: item.description_en ? item.description_en[0] : null,
@@ -58,13 +54,11 @@ module.exports = {
                 ? parseInt(item.agent[0].license_no[0])
                 : null
               : null,
-            Bedrooms: item.bedroom ? parseInt(item.bedroom[0]) : 2,
+            Bedrooms: item.bedroom ? parseInt(item.bedroom[0]) : 0,
             Bathrooms: item.bathroom ? parseInt(item.bathroom[0]) : 2,
             Area: item.size ? parseInt(item.size[0]) : null,
             Property_Type: item.property_type ? item.property_type[0] : null,
             Location: item.city ? item.city[0] : null,
-            // createdAt: null,
-            // updatedAt: null,
             Name: item.title_en ? item.title_en[0] : null,
             slug: item.title_en ? slugify(item.title_en[0]) : null,
             Exclusive: false,
@@ -80,6 +74,9 @@ module.exports = {
                   }))
                 : [],
             },
+            Completed: item.completion_status
+              ? item.completion_status[0]
+              : "completed",
             publishedAt: new Date(),
           };
 
@@ -100,29 +97,37 @@ module.exports = {
         RR: await strapi.db
           .query("api::rent-property.rent-property")
           .findMany({ Offering_Type: "RR" }),
+        OF: await strapi.db
+          .query("api::off-plan.off-plan")
+          .findMany({ Completed: "off plan" }),
       };
 
       // Compare existing data with new data
       const newData = {
         RS: [],
         RR: [],
+        OF: [],
       };
 
       convertedArray.forEach((item) => {
-        if (item.Offering_Type === "RS") {
-          const existingItem = existingData.RS.find(
-            (existing) => existing.ReferenceNumber === item.ReferenceNumber
-          );
-          if (!existingItem) {
-            newData.RS.push(item);
+        if (item.Completed === "completed") {
+          if (item.Offering_Type === "RS" || item.Offering_Type === "CS") {
+            const existingItem = existingData.RS.find(
+              (existing) => existing.ReferenceNumber === item.ReferenceNumber
+            );
+            if (!existingItem) {
+              newData.RS.push(item);
+            }
+          } else if (item.Offering_Type === "RR") {
+            const existingItem = existingData.RR.find(
+              (existing) => existing.ReferenceNumber === item.ReferenceNumber
+            );
+            if (!existingItem) {
+              newData.RR.push(item);
+            }
           }
-        } else if (item.Offering_Type === "RR") {
-          const existingItem = existingData.RR.find(
-            (existing) => existing.ReferenceNumber === item.ReferenceNumber
-          );
-          if (!existingItem) {
-            newData.RR.push(item);
-          }
+        } else {
+          newData.OF.push(item); // If not "completed", add to offplan category
         }
       });
 
@@ -153,6 +158,21 @@ module.exports = {
         }
       });
 
+      existingData.OF.forEach(async (existing) => {
+        const found = convertedArray.find(
+          (item) => item.ReferenceNumber === existing.ReferenceNumber
+        );
+        if (!found) {
+          await strapi.db
+            .query("api::offplan-property.offplan-property")
+            .delete({
+              where: {
+                id: existing.id,
+              },
+            });
+        }
+      });
+
       // Add new data to the database
       if (newData.RS.length > 0) {
         await strapi.db
@@ -166,6 +186,13 @@ module.exports = {
           .query("api::rent-property.rent-property")
           .createMany({ data: newData.RR });
         console.log("New RR data added:", newData.RR);
+      }
+
+      if (newData.OF.length > 0) {
+        await strapi.db
+          .query("api::off-plan.off-plan")
+          .createMany({ data: newData.OF });
+        console.log("New OF data added:", newData.OF);
       }
     },
     options: {
