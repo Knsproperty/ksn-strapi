@@ -40,7 +40,7 @@ module.exports = {
           const convertedItem = {
             Offering_Type: item.offering_type ? item.offering_type[0] : null,
             Street: item.title_en ? item.reference_number[0] : null,
-            Rooms: item.bedroom ? parseInt(item.bedroom[0]) : 0,
+            Rooms: item.bedroom ? parseInt(item.bedroom[0]) : 2,
             Short_Address: item.title_en ? item.title_en[0] : null,
             Price: item.price ? parseInt(item.price[0]) : null,
             Description: item.description_en ? item.description_en[0] : null,
@@ -54,7 +54,7 @@ module.exports = {
                 ? parseInt(item.agent[0].license_no[0])
                 : null
               : null,
-            Bedrooms: item.bedroom ? parseInt(item.bedroom[0]) : 0,
+            Bedrooms: item.bedroom ? parseInt(item.bedroom[0]) : 2,
             Bathrooms: item.bathroom ? parseInt(item.bathroom[0]) : 2,
             Area: item.size ? parseInt(item.size[0]) : null,
             Property_Type: item.property_type ? item.property_type[0] : null,
@@ -97,9 +97,9 @@ module.exports = {
         RR: await strapi.db
           .query("api::rent-property.rent-property")
           .findMany({ Offering_Type: "RR" }),
-        OF: await strapi.db
-          .query("api::off-plan.off-plan")
-          .findMany({ Completed: "off plan" }),
+        OF: await strapi.db.query("api::off-plan.off-plan").findMany({
+          Completed: "off plan",
+        }),
       };
 
       // Compare existing data with new data
@@ -127,7 +127,14 @@ module.exports = {
             }
           }
         } else {
-          newData.OF.push(item); // If not "completed", add to offplan category
+          // Check for existing off-plan item with the same slug
+          const existingOffPlanItem = existingData.OF.find(
+            (existing) => existing.ReferenceNumber === item.ReferenceNumber
+          );
+
+          if (!existingOffPlanItem) {
+            newData.OF.push(item);
+          }
         }
       });
 
@@ -196,7 +203,7 @@ module.exports = {
       }
     },
     options: {
-      rule: "10 * * * * *",
+      rule: "* 1 * * * *",
       tz: "Asia/Dhaka",
     },
   },

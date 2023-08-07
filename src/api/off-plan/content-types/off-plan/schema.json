@@ -25,7 +25,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "Price": {
       "type": "decimal"
@@ -37,7 +42,12 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "PricePerSqFt": {
       "type": "float",
@@ -69,7 +79,13 @@
     },
     "Property_Type": {
       "type": "enumeration",
-      "enum": ["VH", "TH", "FA", "OF", "AP"]
+      "enum": [
+        "VH",
+        "TH",
+        "FA",
+        "OF",
+        "AP"
+      ]
     },
     "Location": {
       "type": "string"
@@ -82,10 +98,6 @@
     },
     "Name": {
       "type": "string"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "Name"
     },
     "Exclusive": {
       "type": "boolean",
@@ -102,7 +114,10 @@
     },
     "Furnished": {
       "type": "enumeration",
-      "enum": ["Yes", "No"]
+      "enum": [
+        "Yes",
+        "No"
+      ]
     },
     "Geopoints": {
       "type": "string"
@@ -115,6 +130,10 @@
     },
     "Completed": {
       "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
     }
   }
 }
