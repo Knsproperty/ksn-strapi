@@ -170,13 +170,11 @@ module.exports = {
           (item) => item.ReferenceNumber === existing.ReferenceNumber
         );
         if (!found) {
-          await strapi.db
-            .query("api::offplan-property.offplan-property")
-            .delete({
-              where: {
-                id: existing.id,
-              },
-            });
+          await strapi.db.query("api::off-plan.off-plan").delete({
+            where: {
+              id: existing.id,
+            },
+          });
         }
       });
 
